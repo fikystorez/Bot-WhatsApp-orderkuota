@@ -26,4 +26,4 @@ Jika Anda sudah memiliki VPS (Disarankan: **Ubuntu 20.04 / 22.04**), Anda bisa m
 *(Ganti URL di bawah dengan link raw GitHub/Hosting file `install.sh` Anda jika sudah di-upload. Jika belum, gunakan cara manual di bawahnya)*.
 
 ```bash
-apt update && apt install wget -y && wget -qO install.sh [https://raw.githubusercontent.com/USERNAME/REPO/main/install.sh](https://raw.githubusercontent.com/USERNAME/REPO/main/install.sh) && chmod +x install.sh && ./install.sh
+apt update && apt install wget -y && wget -qO install.sh [https://raw.githubusercontent.com/fikystorez/Bot-WhatsApp-orderkuota/main/install.sh](https://raw.githubusercontent.com/fikystorz/Bot-WhatsApp-orderkuota/main/install.sh) && chmod +x install.sh && ./install.sh
