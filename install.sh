@@ -601,6 +601,22 @@ menu_produk() {
                     fs.writeFileSync('produk.json', JSON.stringify(produk, null, 2));
                 "
                 read -p "Selesai..." ;;
+            2)
+    read -p "Masukkan Kode Produk yang akan dihapus: " kode_hapus
+    KODE_HAPUS=$kode_hapus node -e "
+        const fs = require('fs');
+        if (!fs.existsSync('produk.json')) return console.log('❌ File tidak ditemukan');
+        let p = JSON.parse(fs.readFileSync('produk.json'));
+        let key = process.env.KODE_HAPUS.toUpperCase();
+        if (p[key]) {
+            delete p[key];
+            fs.writeFileSync('produk.json', JSON.stringify(p, null, 2));
+            console.log('✅ Produk berhasil dihapus');
+        } else {
+            console.log('❌ Kode tidak ditemukan');
+        }
+    "
+    read -p "Tekan Enter..." ;;
             3)
                 node -e "
                     const fs = require('fs');
