@@ -643,8 +643,23 @@ while true; do
     case $choice in
         1) install_dependencies ;;
         2) 
-            if [ ! -f "index.js" ]; then echo "❌ Jalankan Menu 1 dulu!"; sleep 2; continue; fi
+            if [ ! -f "index.js" ]; then echo "❌ Anda harus menjalankan Menu 1 dulu!"; sleep 2; continue; fi
+            if [ ! -d "sesi_bot" ] || [ -z "$(ls -A sesi_bot 2>/dev/null)" ]; then
+                read -p "📲 Masukkan Nomor WA Bot (Awali 628...): " nomor_bot
+                if [ ! -z "$nomor_bot" ]; then
+                    node -e "
+                        const fs = require('fs');
+                        let config = fs.existsSync('config.json') ? JSON.parse(fs.readFileSync('config.json')) : {};
+                        config.botNumber = '$nomor_bot';
+                        config.botName = config.botName || 'FIKY STORE';
+                        fs.writeFileSync('config.json', JSON.stringify(config, null, 2));
+                    "
+                fi
+            fi
+            echo -e "\n⏳ Menjalankan bot... (Tekan CTRL+C untuk mematikan dan kembali ke menu)"
             node index.js
+            echo -e "\n⚠️ Proses bot terhenti."
+            read -p "Tekan Enter untuk kembali ke menu utama..."
             ;;
         3) 
             pm2 delete fiky-bot 2>/dev/null
